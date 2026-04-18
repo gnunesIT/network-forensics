@@ -1,0 +1,28 @@
+## Summary ##
+Matthew Jones' device was compromised. The attacker downloaded IcedID malware onto the victim's device at packet 692 and proceeded to receive instructions from external server 89.44.9.186, associated with 3 different domains. No evidence of data exfiltration.
+
+## Environment ##
+
+Time Window ⇒ 15:03 → 17:29 ; 7894 Packets
+Compromised Device ⇒ 10.8.21.163 Username ⇒ matthew.jones Hostname ⇒ DESKTOP-0F4FE8A MAC ⇒ 10:c3:7b:0a:f2:85
+DC ⇒ 10.8.21.8
+Domain ⇒ pizza-bender.com
+
+## IOCs ##
+
+ncznw6a.com ⇒ Not accessed directly
+ldrbravo.casa ⇒ 45.147.231.132
+siesetera.club ⇒ 89.44.9.186
+ciliabba.cyou ⇒ 89.44.9.186
+ubbifeder.cyou ⇒ 89.44.9.186
+
+## Payload Download ##
+
+692 10.8.21.163 → 45.12.4.190 HTTP GET /dujok/kevyl.php Content-Length ⇒ 304640 bytes Host ⇒ ncznw6a.com Hash ⇒ 054ff4620aaa40928ca67a2c364bedf71d79672874d75ba50ff8231069ad74d9 Malware ⇒ IcedID ; Payload transfer from packet 692 to 1184
+
+## C2 Beaconing ##
+
+1980 45.147.231.132 → 10.8.21.163 TCP 1334 443→61225 PSH,ACK — extended to packet 2172 Host ⇒ ldrbravo.casa
+2535 89.44.9.186 → 10.8.21.163 TCP 1334 443→61227 PSH,ACK Host ⇒ siesetera.club
+
+Remaining domains above used for C2 beaconing. IP 89.44.9.186 associated with 3 different domains.
