@@ -1,0 +1,45 @@
+### Environment
+
+- Time Windows ⇒ 00:25 → 01:15 ; 4593 Packets
+- Compromised Device ⇒ 10.7.31.101 
+   Username ⇒ **`gregory.simmons`**
+   MAC ⇒ **`00:0c:6e:12:af:38`**
+   Hostname ⇒ **`DESKTOP-DPHW305`**
+- DC ⇒ 10.7.31.7
+- Domain ⇒ **`tecsolutions.info`**
+
+### Summary
+
+- Gregory Simmons device was compromised with Emotet via a malicious document (INVOICE-OR85-923315.doc) downloaded from e-dsm.com.br, followed by a second payload from jambino.us. Two C2 channels were established. No data exfiltration was observed.
+
+### IOCs
+
+| IOC  | Type | Context | VT Rating |
+| --- | --- | --- | --- |
+| e-dsm.com.br | Domain | Payload Delivery | 11/94 |
+| jambino.us | Domain | Payload Delivery | 6/94 |
+| 191.6.208.51 | IP | External IP associated with e-dsm.com.br | 1/94 |
+| 67.20.112.81 | IP | External IP associated with jambino.us | 0/94 |
+| 201.235.10.215 | IP | C2 Beaconing | 14/94 |
+| 104.236.52.89 | IP | C2 Beaconing | 15/94 |
+| **`537ceaaf4b76967b916c857bf8113e6b6ccc65dca06df2d300b66b8a61d9eedc`** | Hash | Payload Downloaded 1 | 50/63 |
+| **`0a3aaa398a6abe7a4ba256812b8b6632fa4595b4ac5c47b459d5a6a911c2d202`** | Hash | Payload Downloaded 2 | 64/72 |
+
+### Attack Sequence
+
+| TimeStamp/Packet | Context | Host/IP | Malware | URL |
+| --- | --- | --- | --- | --- |
+| 00:25 / 191 | Payload Delivery | e-dsm.com.br / 191.6.208.51 | Emotet | GET [ Emotet Pattern ] ; Filename ⇒ INVOICE-OR85-923315.doc |
+| 00:26 / 531  | Payload Delivery | jambino.us / 67.20.112.81 | Emotet | GET [ Emotet Pattern ] ; Filename ⇒ 3tknamb7298632293.exe |
+| 00:26 → 01:13 / 1493 → 4574 | C2 Beaconing | 201.235.10.215 | Emotet | POST [ Emotet Pattern ] |
+| 00:26 → 00:44 / 1675 → 4064 | C2 Beaconing | 104.236.52.89 | Emotet | POST [ Emotet Pattern ] |
+| 00:44 / 4046 | C2 Beaconing | 104.236.52.89 | Emotet | GET /whoami.php ; Body containing victims public IP address ; Possible next attack step |
+
+### Conclusion
+
+- Emotet infection was delivered in two stages: 
+  First stage occurred through a malicious file named INVOICE-OR85-923315.doc
+  Second stage occurred through another malicious file named 3tknamb7298632293.exe
+- The malware then proceeded to establish two different C2 channels via POST request with randomised URLs.
+- There was an GET whoami.php that delivered the victims public IP address, which indicates preparation for further activity such as data exfiltration or lateral movement
+- Activity beyond the capture window cannot be assessed, but in the pcap there was no data exfiltration.
