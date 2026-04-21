@@ -1,12 +1,12 @@
 ### Environment
 
 - Time Windows ⇒ 00:25 → 01:15 ; 4593 Packets
-- Compromised Device ⇒ "10.7.31.101" 
-  Username ⇒ "gregory.simmons"
-  MAC ⇒ "00:0c:6e:12:af:38"
-  Hostname ⇒ "DESKTOP-DPHW305"
-- DC ⇒ "10.7.31.7"
-- Domain ⇒ "tecsolutions.info"
+- Compromised Device ⇒ `10.7.31.101`
+  Username ⇒ `gregory.simmons`
+  MAC ⇒ `00:0c:6e:12:af:38`
+  Hostname ⇒ `DESKTOP-DPHW305`
+- DC ⇒ `10.7.31.7`
+- Domain ⇒ `tecsolutions.info`
 
 ### Summary
 
@@ -16,14 +16,14 @@
 
 | IOC  | Type | Context | VT Rating |
 | --- | --- | --- | --- |
-| e-dsm.com.br | Domain | Payload Delivery | 11/94 |
-| jambino.us | Domain | Payload Delivery | 6/94 |
-| 191.6.208.51 | IP | External IP associated with e-dsm.com.br | 1/94 |
-| 67.20.112.81 | IP | External IP associated with jambino.us | 0/94 |
-| 201.235.10.215 | IP | C2 Beaconing | 14/94 |
-| 104.236.52.89 | IP | C2 Beaconing | 15/94 |
-| "537ceaaf4b76967b916c857bf8113e6b6ccc65dca06df2d300b66b8a61d9eedc" | Hash | Payload Downloaded 1 | 50/63 |
-| "0a3aaa398a6abe7a4ba256812b8b6632fa4595b4ac5c47b459d5a6a911c2d202" | Hash | Payload Downloaded 2 | 64/72 |
+| `e-dsm.com.br` | Domain | Payload Delivery | 11/94 |
+| `jambino.us` | Domain | Payload Delivery | 6/94 |
+| `191.6.208.51` | IP | External IP associated with e-dsm.com.br | 1/94 |
+| `67.20.112.81` | IP | External IP associated with jambino.us | 0/94 |
+| `201.235.10.215` | IP | C2 Beaconing | 14/94 |
+| `104.236.52.89` | IP | C2 Beaconing | 15/94 |
+| `537ceaaf4b76967b916c857bf8113e6b6ccc65dca06df2d300b66b8a61d9eedc` | Hash | Payload Downloaded 1 | 50/63 |
+| `0a3aaa398a6abe7a4ba256812b8b6632fa4595b4ac5c47b459d5a6a911c2d202` | Hash | Payload Downloaded 2 | 64/72 |
 
 ### Attack Sequence
 
