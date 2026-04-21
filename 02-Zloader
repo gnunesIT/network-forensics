@@ -1,0 +1,48 @@
+### Environment
+
+- Time Windows ⇒ 17:13 → 17:21 ; 9968 Packets
+- Compromised Devices ⇒ 10.6.12.157 ; 10.6.12.203
+  Username 10.6.12.157 ⇒ **`ted.brokowski`**
+  Hostname 10.6.12.157 ⇒ DESKTOP-86J4BX
+  MAC 10.6.12.157 ⇒ 00:11:75:68:42:d3
+
+  Username 10.6.12.203 ⇒ **`frank.brokowski`**
+  Hostname 10.6.12.203 ⇒ LAPTOP-5WKHX9YG
+  MAC 10.6.12.203 ⇒ 84:3a:4b:6d:fc:e2
+- DC ⇒ 10.6.12.12
+- Domain ⇒ **`frank-n-ted.com`**
+
+### Summary
+
+- In this investigation the two victims ted and frank brokowski were likely compromised by the Zloader malware.
+- In this investigation there was post infection traffic regarding frank brokowski and payload confirmed to his device.
+- Ted did not have a confirmed infection.
+
+### IOCS
+
+| IOC | Type | Context | VT Rating |
+| --- | --- | --- | --- |
+| **`cardboardspaceshiptoys.com`** | Domain | Payload Delivery (Probable) | 03/94 |
+| **`immortalshield.com`** | Domain |  | 04/94 |
+| **`snnmnkxdhflwgthqismb.com`** | Domain | C2 Beaconing | 16/94 |
+| 172.93.120.242 | IP | Associated with **`cardboardspaceshiptoys.com`** | 0/94 |
+| 104.28.3.248 | IP  | Associated with **`immortalshield.com`** | 0/94 |
+| 205.185.125.104 | IP | Payload Delivery | 08/94 |
+| d36366666b407fe5527b96696377ee7ba9b609c8ef4561fa76af218ddd764dec | Hash | Payload Downloaded from june11.dll  | 55/73 |
+
+### Attack Sequence
+
+| Packet / Timestamp | Context | Traffic Comunication | Malware | URL |
+| --- | --- | --- | --- | --- |
+| 2453 / 17:14 | Payload Delivery (Probable) | 10.6.12.157 → cardboard.spaceshiptoys.com / 172.93.120.242 | Zloader | GET / logs/invoice-86495.doc |
+| 3298 / 17:15 | Payload Delivery | 10.6.12.203 → 205.185.125.104 | Zloader | GET / pQBtWj |
+| 3302 / 17:15 | Payload Delivery | 10.6.12.203 → 205.185.125.104 | Zloader | GET /files/june11.dll |
+| 4228 → 8562 17:17 → 17:17 | C2 Beaconing | 10.6.12.203 → snnmnkxdhflwgthqismb.com / 5.101.51.151 | Zloader | POST /post.php |
+
+### Conclusion
+
+- Ted’s device started by sending a GET invoice.86495.doc request, which he donwloaded but the traffic was redirected to https, whith no visible confirmation of payload or data exfiltration
+- 1 minute after Frank’s device established a C2 connection where the external server gave him the location of the file june11.dll, aka the payload.
+- 4 packets later frank’s device got compromised by the Zloader malware, coming from the june11.dll file.
+- After the infection frank’s device established another C2 connection to the host snnmnkxdhflwgthqismb.com, sending POST /post.php traffic.
+- From what was possible to investigate, teds device did not have a confirmed infection nor exfiltration of data, and frankl’s device was indeed compromised, donwloading payload and establishing C2 connections.
