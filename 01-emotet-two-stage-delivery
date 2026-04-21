@@ -1,12 +1,12 @@
 ### Environment
 
 - Time Windows ⇒ 00:25 → 01:15 ; 4593 Packets
-- Compromised Device ⇒ 10.7.31.101 
-   Username ⇒ **`gregory.simmons`**
-   MAC ⇒ **`00:0c:6e:12:af:38`**
-   Hostname ⇒ **`DESKTOP-DPHW305`**
-- DC ⇒ 10.7.31.7
-- Domain ⇒ **`tecsolutions.info`**
+- Compromised Device ⇒ "10.7.31.101" 
+  Username ⇒ "gregory.simmons"
+  MAC ⇒ "00:0c:6e:12:af:38"
+  Hostname ⇒ "DESKTOP-DPHW305"
+- DC ⇒ "10.7.31.7"
+- Domain ⇒ "tecsolutions.info"
 
 ### Summary
 
