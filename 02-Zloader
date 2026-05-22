@@ -41,8 +41,8 @@
 
 ### Conclusion
 
-- Ted’s device started by sending a GET invoice.86495.doc request, which he donwloaded but the traffic was redirected to https, whith no visible confirmation of payload or data exfiltration
+- Ted’s device started by sending a GET invoice.86495.doc request, which he downloaded but the traffic was redirected to https, whith no visible confirmation of payload or data exfiltration
 - 1 minute after Frank’s device established a C2 connection where the external server gave him the location of the file june11.dll, aka the payload.
-- 4 packets later frank’s device got compromised by the Zloader malware, coming from the june11.dll file.
+- 4 packets later Frank’s device got compromised by the Zloader malware, coming from the june11.dll file.
 - After the infection frank’s device established another C2 connection to the host snnmnkxdhflwgthqismb.com, sending POST /post.php traffic.
 - From what was possible to investigate, teds device did not have a confirmed infection nor exfiltration of data, and frankl’s device was indeed compromised, donwloading payload and establishing C2 connections.
