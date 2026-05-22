@@ -29,11 +29,11 @@
 
 | TimeStamp/Packet | Context | Host/IP | Malware | URL |
 | --- | --- | --- | --- | --- |
-| 00:25 / 191 | Payload Delivery | e-dsm.com.br / 191.6.208.51 | Emotet | GET [ Emotet Pattern ] ; Filename ⇒ INVOICE-OR85-923315.doc |
-| 00:26 / 531  | Payload Delivery | jambino.us / 67.20.112.81 | Emotet | GET [ Emotet Pattern ] ; Filename ⇒ 3tknamb7298632293.exe |
-| 00:26 → 01:13 / 1493 → 4574 | C2 Beaconing | 201.235.10.215 | Emotet | POST [ Emotet Pattern ] |
-| 00:26 → 00:44 / 1675 → 4064 | C2 Beaconing | 104.236.52.89 | Emotet | POST [ Emotet Pattern ] |
-| 00:44 / 4046 | C2 Beaconing | 104.236.52.89 | Emotet | GET /whoami.php ; Body containing victims public IP address ; Possible next attack step |
+| 00:25 / 191 | Payload Delivery | e-dsm.com.br / 191.6.208.51 | Emotet | hxxp://e-dsm[.]com[.]br/www/ZdJCAB/ ; Filename ⇒ INVOICE-OR85-923315.doc |
+| 00:26 / 531  | Payload Delivery | jambino.us / 67.20.112.81 | Emotet | hxxp://jambino[.]us/tv/DYsPb/ ; Filename ⇒ 3tknamb7298632293.exe |
+| 00:26 → 01:13 / 1493 → 4574 | C2 Beaconing | 201.235.10.215 | Emotet | hxxp://201[.]235[.]10[.]215/RLVIcVHpdWjKMHfJsK/bhAzHJy/vazwovI5B9BcchWQ/d0EvU2Xl/HQ7 ; paths with long strings, typical Emotet C2 |
+| 00:26 → 00:44 / 1675 → 4064 | C2 Beaconing | 104.236.52.89 | Emotet | hxxp://104[.]236[.]52[.]89:8080/y1Oc/CRTtjoStAe/03wHuC/ ; paths with long strings, typical Emotet C2 |
+| 00:44 / 4046 | C2 Beaconing | 104.236.52.89 | Emotet | hxxp://104[.]236[.]52[.]89:8080/whoami[.]php ; Body containing victims public IP address ; Consistent behaviour with pre-exfiltration reconnaissance |
 
 ### Conclusion
 
@@ -41,5 +41,5 @@
   First stage occurred through a malicious file named INVOICE-OR85-923315.doc
   Second stage occurred through another malicious file named 3tknamb7298632293.exe
 - The malware then proceeded to establish two different C2 channels via POST request with randomised URLs.
-- There was an GET whoami.php that delivered the victims public IP address, which indicates preparation for further activity such as data exfiltration or lateral movement
+- There was a GET whoami.php that delivered the victims public IP address, which indicates preparation for further activity such as data exfiltration or lateral movement
 - Activity beyond the capture window cannot be assessed, but in the pcap there was no data exfiltration.
